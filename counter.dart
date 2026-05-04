@@ -9,6 +9,20 @@ class Counter extends StatefulWidget {
 
 class _CounterState extends State<Counter> {
   double counter = 0;
+  Color getCounterColor(int value){
+    if(counter == 1) return Colors.red;
+    else if(counter == 2) return Colors.pink;
+    else if(counter == 3) return Colors.green;
+    else if(counter == 4) return Colors.brown;
+    else if(counter == 5) return Colors.yellow;
+    else if(counter == 6) return Colors.orange;
+    else if(counter == 7) return Colors.blue;
+    else if(counter == 8) return Colors.blueGrey;
+    else if(counter == 9) return Colors.grey;
+    else if(counter == 10) return Colors.lime;
+    else return Colors.black;
+  }
+  double Target = 10;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +41,7 @@ class _CounterState extends State<Counter> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 60.0,
+                color: getCounterColor(10),
               ),
             ),
             Row(
@@ -40,11 +55,13 @@ class _CounterState extends State<Counter> {
             icon: const Icon(Icons.remove),
               iconSize: 30.0,
               color: Colors.red,
+
             ),
             Padding(padding: EdgeInsetsGeometry.all(60.0)),
                 IconButton(onPressed: () {
                   setState(() {
                     counter ++;
+                    if(counter ==Target){ print("goal reached");};
                   });
             }, 
             icon: const Icon(Icons.add),
@@ -58,10 +75,11 @@ class _CounterState extends State<Counter> {
                 counter=0;
               });
             }, child:Text("Reset",
-            style: TextStyle(
-              color: Colors.blue,
+                style: TextStyle(
+                color: Colors.blue,
+                ),
+              ), 
             ),
-            ), ),
           ],
         ),
       ),

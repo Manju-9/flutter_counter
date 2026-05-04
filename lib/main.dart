@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/widget/counter.dart';
+import 'package:myapp/widget/userdetails.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Counter(),
+      home: UserDetails(),
     );
   }
 }
