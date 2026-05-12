@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 
 class MoviesList extends StatelessWidget {
-  const MoviesList({super.key, required this.title,required this.year,required this.image,this.nextpage,});
+  const MoviesList({super.key, required this.title,required this.year,required this.image,this.nextpage,required this.onTap});
 
   final String title;
   final String year;
   final String image;
   final Widget? nextpage;
-
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: nextpage != null ? () {
-        Navigator.push(context, 
-          MaterialPageRoute(builder: (context){
-            return nextpage!;
-            },
-          )
-        );
-      } : null,
+      onTap:onTap,
       child: Stack(
         alignment: Alignment.center,
         children: [
