@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MoviesList extends StatelessWidget {
+class MoviesList extends StatefulWidget {
   const MoviesList({super.key, required this.title,required this.year,required this.image,this.nextpage,required this.onTap});
 
   final String title;
@@ -10,13 +10,19 @@ class MoviesList extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
+  State<MoviesList> createState() => _MoviesListState();
+}
+
+class _MoviesListState extends State<MoviesList> {
+  bool isliked = false;
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onTap,
+      onTap:widget.onTap,
       child: Stack(
         alignment: Alignment.center,
-        children: [
-         
+        children: [   
     Card(
       margin: EdgeInsets.all(10),
       child: Padding(padding: EdgeInsets.all(10),
@@ -25,7 +31,7 @@ class MoviesList extends StatelessWidget {
           ClipRRect(
            borderRadius: BorderRadius.circular(5.0),
           child:Image.asset(
-            image,
+            widget.image,
             height: 120,
             width: 100,
             fit: BoxFit.cover,
@@ -37,7 +43,7 @@ class MoviesList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                widget.title,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -45,9 +51,21 @@ class MoviesList extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                year,
+                widget.year,
                 style: const TextStyle(fontSize: 16),
               ),
+              SizedBox(width: 60),
+              IconButton(onPressed: () {
+              setState(() {
+              isliked = !isliked;
+              });  
+            }, 
+            icon: Icon(
+              isliked ? Icons.favorite : Icons.favorite_border,
+              color: isliked ? Colors.red : Colors.grey,
+              size: 25,
+            ) 
+            ),
             ],
           ),),
         ],
